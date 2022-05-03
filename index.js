@@ -1,17 +1,62 @@
+// const assert = require('assert');
+console.log("prueba");
+
 class SortedList {
-  constructor() {}
+  constructor() {
+    this.items = [];
+    this.length = this.items.length;
+  }
 
-  add(item) {}
+  add(item) {
+    this.items.push(item);
+    this.items.sort(function (a, b){return a - b});
+  }
 
-  get(pos) {}
+  get(pos) {
+    if (this.items[pos] === undefined) {
+      throw new Error('OutOfBounds');
+    } else {
+      return this.items[pos];
+    }
+  }
 
-  max() {}
+  max() {
+    if (this.items.length === 0) {
+      throw new Error('EmptySortedList')
+    } else {
+     return Math.max(...this.items);
+    }
+    
+  }
 
-  min() {}
+  min() {
+    if (this.items.length === 0) {
+      throw new Error('EmptySortedList')
+    } else {
+     return Math.min(...this.items);
+    }
+  }
 
-  sum() {}
+  sum() {
+    if (this.items.length === 0) {
+      return 0;
+    } else {
+    this.items.reduce((acc, elem) => {
+      return acc += elem;
+    }, 0);
+    }
+    return acc;
+  }
 
-  avg() {}
+  avg() {
+    let average = 0;
+    this.items.forEach((eachElement) => {
+      average += eachElement;
+    })
+    return average /= this.items.length
+  }
 }
 
 module.exports = SortedList;
+
+
