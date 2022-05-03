@@ -8,12 +8,9 @@ class SortedList {
   }
 
   add(item) {
-    if (this.items.length > 1) {
-      this.items.push(item);
-      this.items.sort(function (a, b){return a - b});
-    } else {
     this.items.push(item);
-    }
+    this.items.sort(function (a, b){return a - b});
+    this.length++;
   }
 
   get(pos) {
