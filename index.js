@@ -8,8 +8,12 @@ class SortedList {
   }
 
   add(item) {
+    if (this.items.length > 1) {
+      this.items.push(item);
+      this.items.sort(function (a, b){return a - b});
+    } else {
     this.items.push(item);
-    this.items.sort(function (a, b){return a - b});
+    }
   }
 
   get(pos) {
@@ -38,22 +42,29 @@ class SortedList {
   }
 
   sum() {
+
     if (this.items.length === 0) {
       return 0;
     } else {
-    this.items.reduce((acc, elem) => {
-      return acc += elem;
-    }, 0);
-    }
-    return acc;
+    let suma = 0;
+    this.items.forEach((eachElement) => {
+      suma += eachElement;
+    })
+    return suma;
+  }
+
+    
   }
 
   avg() {
     let average = 0;
     this.items.forEach((eachElement) => {
-      average += eachElement;
-    })
-    return average /= this.items.length
+      average += eachElement; })
+    if (this.items.length === 0) {
+      throw new Error('EmptySortedList')
+    } else {
+      return average /= this.items.length    
+  }    
   }
 }
 
